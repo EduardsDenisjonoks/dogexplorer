@@ -13,7 +13,7 @@ interface DogApi {
 
     @GET("breed/{breed}/images/random/{limit}")
     suspend fun getBreedRandomImages(
-        @Path("breed") breed: String,
+        @Path("breed", encoded = true) breed: String,
         @Path("limit") limit: Int = 10
     ): Response<ImageResponse>
 

@@ -8,8 +8,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.dogexplorer.R
 import timber.log.Timber
 
-@BindingAdapter(value = ["app:url_image", "app:round_corners"], requireAll = false)
-fun AppCompatImageView.loadUrlImage(url: String?, roundCorners: Boolean = false) {
+@BindingAdapter(value = ["app:url_image", "app:round_corners", "app:centre_crop"], requireAll = false)
+fun AppCompatImageView.loadUrlImage(url: String?, roundCorners: Boolean = false, centerCrop: Boolean = true) {
     try {
         when {
             url.isNullOrBlank() -> Glide.with(this).clear(this)
@@ -17,13 +17,21 @@ fun AppCompatImageView.loadUrlImage(url: String?, roundCorners: Boolean = false)
                 .with(this)
                 .load(url)
                 .apply {
-                    if (roundCorners) {
-                        this.transform(
-                            CenterCrop(),
-                            RoundedCorners(context.resources.getDimensionPixelSize(R.dimen.image_corners))
-                        )
-                    } else {
-                        this.centerCrop()
+                    when {
+                        roundCorners && centerCrop -> {
+                            this.transform(
+                                CenterCrop(),
+                                RoundedCorners(context.resources.getDimensionPixelSize(R.dimen.image_corners))
+                            )
+                        }
+                        roundCorners && !centerCrop -> {
+                            this.transform(
+                                RoundedCorners(context.resources.getDimensionPixelSize(R.dimen.image_corners))
+                            )
+                        }
+                        !roundCorners && centerCrop -> {
+                            this.centerCrop()
+                        }
                     }
                 }
                 .into(this)

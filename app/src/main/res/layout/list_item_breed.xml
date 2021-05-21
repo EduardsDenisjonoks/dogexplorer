@@ -29,6 +29,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:round_corners="@{true}"
+            app:centre_crop="@{true}"
             app:url_image="@{imgUrl}"
             tools:src="@tools:sample/backgrounds/scenic" />
 

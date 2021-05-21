@@ -54,9 +54,10 @@ class DogRepositoryImpl @Inject constructor(
     ): ApiResponse<List<String>> {
         return withContext(Dispatchers.IO) {
             try {
-                val breedPath =
-                    breed.toLowerCase(Locale.getDefault()) +
-                            if (subBreed.isNullOrBlank()) "" else "/${subBreed.toLowerCase(Locale.getDefault())}"
+                val subBreedPath =
+                    if (subBreed.isNullOrBlank()) "" else "/${subBreed.toLowerCase(Locale.getDefault())}"
+                val breedPath = breed.toLowerCase(Locale.getDefault()) + subBreedPath
+
                 val response = dogApi.getBreedRandomImages(breedPath)
                 if (response.isSuccessful) {
                     val result = response.body()?.message
