@@ -28,6 +28,7 @@ class DogRepositoryImpl @Inject constructor(
                     if (result == null) {
                         ApiResponse.success(emptyList())
                     } else {
+                        //Fetch images for each bread
                         result.breeds.forEach {
                             it.images = when (val imageResponse =
                                 getBreedRandomImages(it.breedName, it.subBreedName)) {

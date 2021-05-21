@@ -46,7 +46,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_breed_name"
-            style="@style/TextAppearance.MaterialComponents.Headline5"
+            style="@style/MyCardTextAppearance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/space_8"

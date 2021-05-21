@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -17,7 +16,9 @@ import com.example.dogexplorer.databinding.BreedDetailsFragmentBinding
 class BreedDetailsFragment : FragmentBase() {
 
     private val args by navArgs<BreedDetailsFragmentArgs>()
-    private val breedImageAdapter by lazy { BreedImageAdapter() }
+    private val breedImageAdapter by lazy { BreedImageAdapter(args.breed.images)}
+
+    private lateinit var staggeredGridLayoutManager: StaggeredGridLayoutManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,18 +32,14 @@ class BreedDetailsFragment : FragmentBase() {
         )
 
         initListView(binding.listView)
-        initData()
 
         return binding.root
     }
 
     private fun initListView(listView: RecyclerView) {
         listView.adapter = breedImageAdapter
-        listView.layoutManager = StaggeredGridLayoutManager(2, OrientationHelper.VERTICAL)
-    }
-
-    private fun initData(){
-        breedImageAdapter.setNewImages(args.breed.images)
+        staggeredGridLayoutManager = StaggeredGridLayoutManager(2, OrientationHelper.VERTICAL)
+        listView.layoutManager = staggeredGridLayoutManager
     }
 
 }

@@ -10,6 +10,6 @@
 
     <color name="light_gray">#DCDCDC</color>
 
-    <color name="shade_start">#CCFFFFFF</color>
+    <color name="shade_start">#CC000000</color>
     <color name="shade_end">#00FFFFFF</color>
 </resources>

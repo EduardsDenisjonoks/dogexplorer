@@ -25,7 +25,6 @@ class DogBreedsViewModel @Inject constructor(
         fetchBreeds()
     }
 
-
     fun getBreedsLiveData(): LiveData<List<Breed>> = breedsLiveData
     fun getErrorLiveData(): LiveData<String> = errorLiveData
 
