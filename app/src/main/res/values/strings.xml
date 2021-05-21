@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Dogexplorer</string>
+
+    <string name="btn_ok">OK</string>
+
+    <string name="dialog_title_error">Error</string>
 </resources>

@@ -30,7 +30,7 @@ android {
     flavorDimensions "version"
     productFlavors {
         dev {
-            buildConfigField "String", "BASE_URL", "\"https://dog.ceo/api/breeds/\""
+            buildConfigField "String", "BASE_URL", "\"https://dog.ceo/api/\""
         }
     }
 

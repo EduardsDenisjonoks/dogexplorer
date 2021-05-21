@@ -22,5 +22,9 @@
         android:id="@+id/nav_fragment_breed_details"
         android:name="com.example.dogexplorer.BreedDetailsFragment"
         android:label="breed_details_fragment"
-        tools:layout="@layout/breed_details_fragment" />
+        tools:layout="@layout/breed_details_fragment" >
+        <argument
+            android:name="breed"
+            app:argType="com.example.dogexplorer.repository.data.Breed" />
+    </fragment>
 </navigation>

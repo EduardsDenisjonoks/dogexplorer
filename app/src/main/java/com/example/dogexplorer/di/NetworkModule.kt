@@ -4,6 +4,8 @@ import com.example.dogexplorer.BuildConfig
 import com.example.dogexplorer.repository.DogApi
 import com.example.dogexplorer.repository.DogRepository
 import com.example.dogexplorer.repository.DogRepositoryImpl
+import com.example.dogexplorer.repository.data.BreedResponse
+import com.example.dogexplorer.repository.data.getBreedResponseDeserializer
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -48,7 +50,11 @@ object NetworkModule {
 
     @Provides
     fun provideGson(): Gson =
-        GsonBuilder().excludeFieldsWithoutExposeAnnotation().setLenient().create()
+        GsonBuilder()
+            .registerTypeAdapter(BreedResponse::class.java, getBreedResponseDeserializer())
+            .excludeFieldsWithoutExposeAnnotation()
+            .setLenient()
+            .create()
 
     private fun getHttpLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor { message -> Timber.d(message) }.apply {
